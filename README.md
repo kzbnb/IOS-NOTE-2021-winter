@@ -176,3 +176,64 @@ NSObject *b=[a retain];//count +1
 	+ 类和对象在运行时的结构
 	+ 运行时访问和修改类结构
 
+## 2.IOS平台和UI编程
+
+### 1.Application和UIViewController
+
+#### Application
+
++ 应用程序入口：main
+
+  + 构建Application-appdelegate
+
+    - active 激活状态，在前台
+
+    - Incative 非激活状态在前台但不能交互（被打电话、双击home、拉下通知中心）
+
+    - Background 后台状态（home）几十秒就会被操作系统挂起，内存还在（不够就会被清理了），但代码不会跑
+
+    - 以上状态通过delegate传递回调
+
+  + UI配置
+  
+    + 都是挂载到window（继承于view）上展示的
+  
+    + 高level在上 ，低level在下 
+  
++ ViewController
+
+  + 每个Viewcontroller管理一个页面
+
+  + 视图层级是树状结构，可以叠加
+
+  + 在展示时回调viewAppear，销毁（看不见 1.pop掉 2.进入一个新的页面）时回调viewDisAppear
+
+  + 常见的VC：
+
+     - UIViewController（普通的）
+
+     - UINavigationContrller（以push、pop的方式管理）（container viewcontroller）
+
+     - UITabBarController（各页面的切换）（container viewcontroller）
+
+  + 坐标系和视图层级
+    + UIWindow(可以有1个以上，继承于UIView)
+    + 负责分发事件给子视图
+    + 左上角为（0，0）
+    
+  + 生命周期：
+  
+     + View在Window上操作会触发函数回调
+  
+  + Frame、bounds、center
+  
+    + Frame：相对于superview（父view的bound)，起点为左上角（一般0，0）
+  
+    + Bounds：相对于自身，起点是{0，0}（默认）
+  
+    + center是其anchorPoint（视图中心，（0.5，0.5））相对于superView的位置
+  
+    + > https://www.jianshu.com/p/fcf0c284deb4
+
+
+
